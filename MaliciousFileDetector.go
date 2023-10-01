@@ -353,7 +353,7 @@ func is_executable(filename string) bool {
     This function checks for long encoded strings in executable.
 */
 func have_long_encoded_data(content []byte) bool {
-    regex_base16, error := regexp.Compile("[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}")
+    /*regex_base16, error := regexp.Compile("[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}[0-9a-fA-F]{255}")
     if error != nil {
         fmt.Fprintf(os.Stderr, "Error compiling base16 regex: %v\n", error)
         return false
@@ -363,7 +363,7 @@ func have_long_encoded_data(content []byte) bool {
     if error != nil {
         fmt.Fprintf(os.Stderr, "Error compiling base32 regex: %v\n", error)
         return false
-    }
+    }*/ // base64 regex match base32 and base16, there is few executables that match theses regex so delete this regex is probably more optimized.
 
     regex_base64, error := regexp.Compile("[A-Za-z0-9+/_-]{255}[A-Za-z0-9+/_-]{255}[A-Za-z0-9+/_-]{255}[A-Za-z0-9+/_-]{255}[A-Za-z0-9+/_-]{255}[A-Za-z0-9+/_-]{255}[A-Za-z0-9+/_-]{255}[A-Za-z0-9+/_-]{255}[A-Za-z0-9+/_-]{255}[A-Za-z0-9+/_-]{255}[A-Za-z0-9+/_-]{255}[A-Za-z0-9+/_-]{255}[A-Za-z0-9+/_-]{255}[A-Za-z0-9+/_-]{255}[A-Za-z0-9+/_-]{255}[A-Za-z0-9+/_-]{255}[A-Za-z0-9+/_-]{255}[A-Za-z0-9+/_-]{255}[A-Za-z0-9+/_-]{255}")
     if error != nil {
@@ -371,13 +371,13 @@ func have_long_encoded_data(content []byte) bool {
         return false
     }
 
-    if regex_base16.FindIndex(content) != nil {
+    /*if regex_base16.FindIndex(content) != nil {
         return true
     }
 
     if regex_base32.FindIndex(content) != nil {
         return true
-    }
+    }*/
 
     if regex_base64.FindIndex(content) != nil {
         return true
