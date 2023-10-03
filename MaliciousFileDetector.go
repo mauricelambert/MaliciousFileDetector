@@ -592,7 +592,7 @@ func main() {
     pourcent = byte(100)
     messagef(
         fmt.Sprintf(
-            "Analyzed files: %d, Detected files: %d, Suspicous files: %d, Malicious files: %d",
+            "Analyzed files: %d, Detected files: %d, Suspicious files: %d, Malicious files: %d",
             analyzed_files_counter,
             len(discover_files),
             suspicious_files_counter,
